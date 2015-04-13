@@ -1,0 +1,129 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red11\green81\blue160;
+\red210\green0\blue53;\red245\green245\blue247;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+{\info
+{\author KJHg }}\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl840\sa210
+
+\f0\b\fs40 \cf2 \cb3 Mini-project description - Spaceship\
+\pard\pardeftab720\sl420\sa210
+
+\b0\fs28 \cf2 In our last two mini-projects, we will build a 2D space game 
+\i RiceRocks
+\i0  that is inspired by the classic arcade game 
+\i Asteroids
+\i0  (1979).
+\i Asteroids
+\i0  is a relatively simple game by today's standards, but was still immensely popular during its time. (Joe spent countless quarters playing it.) In the game, the player controls a spaceship via four buttons: two buttons that rotate the spaceship clockwise or counterclockwise (independent of its current velocity), a thrust button that accelerates the ship in its forward direction and a fire button that shoots missiles. Large asteroids spawn randomly on the screen with random velocities. The player's goal is to destroy these asteroids before they strike the player's ship. In the arcade version, a large rock hit by a missile split into several fast moving small asteroids that themselves must be destroyed. Occasionally, a flying saucer also crosses the screen and attempts to destroy the player's spaceship. Searching for "asteroids arcade" yields links to multiple versions of 
+\i Asteroids
+\i0  that are available on the web (including an updated version by 
+\i Atari
+\i0 , the original creator of 
+\i Asteroids
+\i0 ).\
+\pard\pardeftab720\sl840\sa210
+
+\b\fs32 \cf2 Mini-project development process\
+\pard\pardeftab720\sl420
+
+\b0\fs28 \cf2 For this mini-project, you will implement a working spaceship plus add a single asteroid and a single missile. We have provided art for your game so its look and feel is that of a more modern game. You should begin by loading the {\field{\*\fldinst{HYPERLINK "http://www.codeskulptor.org/#examples-spaceship_template.py"}}{\fldrslt 
+\b \cf4 program template}}.The program template includes all necessary image and audio files. Unfortunately, no audio format is supported by all major browsers so we have decided to provided sounds in the 
+\f1\fs24 \cf5 \cb6 mp3
+\f0\fs28 \cf2 \cb3  format which is supported by Chrome (but not by Firefox on some systems). (
+\f1\fs24 \cf5 \cb6 ogg
+\f0\fs28 \cf2 \cb3  versions are also available.) 
+\b We highly recommend using Chrome for the last two weeks of the class.
+\b0  We have found that Chrome typically has better performance on games with more substantial drawing requirements and standardization on a common browser will make peer assessing projects more reliable.\
+\pard\pardeftab720\sl420\sa210
+
+\b \cf2 Phase one - Spaceship
+\b0 \
+In this phase, you will implement the control scheme for the spaceship.This includes a complete Spaceship class and the appropriate keyboard handlers to control the spaceship. Your spaceship should behave as follows:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl420
+\ls1\ilvl0\cf2 {\listtext	\'95	}The left and right arrows should control the orientation of your spaceship. While the left arrow is held down, your spaceship should turn counter-clockwise. While the right arrow is down, your spaceship should turn clockwise. When neither key is down, your ship should maintain its orientation. You will need to pick some reasonable angular velocity at which your ship should turn.\
+{\listtext	\'95	}The up arrow should control the thrusters of your spaceship. The thrusters should be on when the up arrow is down and off when it is up. When the thrusters are on, you should draw the ship with thrust flames. When the thrusters are off, you should draw the ship without thrust flames.\
+{\listtext	\'95	}When thrusting, the ship should accelerate in the direction of its forward vector. This vector can be computed from the orientation/angle of the ship using the provided helper function 
+\f1\fs24 \cf5 \cb6 angle_to_vector
+\f0\fs28 \cf2 \cb3 . You will need to experiment with scaling each component of this acceleration vector to generate a reasonable acceleration.\
+{\listtext	\'95	}Remember that while the ship accelerates in its forward direction, but the ship always moves in the direction of its velocity vector. Being able to accelerate in a direction different than the direction that you are moving is a hallmark of 
+\i Asteroids
+\i0 .\
+{\listtext	\'95	}Your ship should always experience some amount of friction. (Yeah, we know, "Why is there friction in the vacuum of space?". Just trust us there is in this game.) This choice means that the velocity should always be multiplied by a constant factor less than one to slow the ship down. It will then come to a stop eventually after you stop the thrusters.\
+\pard\pardeftab720\sl420
+\cf2 Now, implement these behaviors above in order. Each step should require just a few lines of code. Here are some hints:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl420
+\ls2\ilvl0\cf2 {\listtext	1.	}Modify the draw method for the Ship class to draw the ship image (without thrust flames) instead of a circle. This method should incorporate the ship's position and angle. Note that the angle should be in radians, not degrees. Since a call to the ship's draw method already exists in the draw handler, you should now see the ship image. Experiment with different positions and angles for the ship.\
+{\listtext	2.	}Implement an initial version of the update method for the ship. This version should update the position of the ship based on its velocity. Since a call to the update method also already exists in the draw handler, the ship should move in response to different initial velocities.\
+{\listtext	3.	}Modify the update method for the ship to increment its angle by its angular velocity.\
+{\listtext	4.	}Make your ship turn in response to the left/right arrow keys. Add keydown and keyup handlers that check the left and right arrow keys. Add methods to the Ship class to increment and decrement the angular velocity by a fixed amount. (There is some flexibility in how you structure these methods.) Call these methods in the keyboard handlers appropriately and verify that you can turn your ship as you expect.\
+{\listtext	5.	}Modify the keyboard handlers to turn the ship's thrusters on/off. Add a method to the Ship class to turn the thrusters on/off (you can make it take a Boolean argument which is True or False to decide if they should be on or off).\
+{\listtext	6.	}Modify the ship's draw method to draw the thrust image when it is on. (The ship image is tiled and contains both images of the ship.)\
+{\listtext	7.	}Modify the ship's thrust method to play the thrust sound when the thrust is on. Rewind the sound when the thrust turns off.\
+{\listtext	8.	}Add code to the ship's update method to use the given helper function 
+\f1\fs24 \cf5 \cb6 angle_to_vector
+\f0\fs28 \cf2 \cb3  to compute the forward vector pointing in the direction the ship is facing based on the ship's angle.\
+{\listtext	9.	}Next, add code to the ship's update method to accelerate the ship in the direction of this forward vector when the ship is thrusting. You will need to update the velocity vector by a small fraction of the forward acceleration vector so that the ship does not accelerate too fast.\
+{\listtext	10.	}Then, modify the ship's update method such that the ship's position wraps around the screen when it goes off the edge (use modular arithmetic!).\
+{\listtext	11.	}Up to this point, your ship will never slow down. Finally, add friction to the ship's update method as shown in the "Acceleration and Friction" video by multiplying each component of the velocity by a number slightly less than 1 during each update.\
+\pard\pardeftab720\sl420
+\cf2 You should now have a ship that flies around the screen,as you would like for 
+\i RiceRocks
+\i0 . Adjust the constants as you would like to get it to fly how you want.\
+\pard\pardeftab720\sl420\sa210
+\cf2 \
+\pard\pardeftab720\sl420\sa210
+
+\b \cf2 Phase two - Rocks
+\b0 \
+To implement rocks, we will use the provided Sprite class. Note that the update method for the sprite will be very similar to the update method for the ship. The primary difference is that the ship's velocity and rotation are controlled by keys, whereas sprites have these set randomly when they are created. Rocks should screen wrap in the same manner as the ship.\
+In the template, the global variable 
+\f1\fs24 \cf5 \cb6 a_rock
+\f0\fs28 \cf2 \cb3  is created at the start with zero velocity. Instead, we want to create version of 
+\f1\fs24 \cf5 \cb6 a_rock
+\f0\fs28 \cf2 \cb3  once every second in the timer handler. Next week, we will add multiple rocks. This week, the ship will not die if it hits a rock. We'll add that next week. To implement rocks, we suggest the following:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl420
+\ls3\ilvl0\cf2 {\listtext	1.	}Complete the Sprite class (as shown in the "Sprite class" video) by modifying the draw handler to draw the actual image and the update handler to make the sprite move and rotate. Rocks do not accelerate or experience friction, so the sprite update method should be simpler than the ship update method. Test this by giving 
+\f1\fs24 \cf5 \cb6 a_rock
+\f0\fs28 \cf2 \cb3 \'a0different starting parameters and ensuring it behaves as you expect.\
+{\listtext	2.	}Implement the timer handler 
+\f1\fs24 \cf5 \cb6 rock_spawner
+\f0\fs28 \cf2 \cb3 . In particular, set 
+\f1\fs24 \cf5 \cb6 a_rock
+\f0\fs28 \cf2 \cb3  to be a new rock on every tick. (Don't forget to declare
+\f1\fs24 \cf5 \cb6 a_rock
+\f0\fs28 \cf2 \cb3  as a global in the timer handler.) Choose a velocity, position, and angular velocity randomly for the rock. You will want to tweak the ranges of these random numbers, as that will affect how fun the game is to play. Make sure you generated rocks that spin in both directions and, likewise, move in all directions.\
+\pard\pardeftab720\sl420
+
+\b \cf2 Phase three - Missiles
+\b0 \
+\pard\pardeftab720\sl420\sa210
+\cf2 To implement missiles, we will use the same sprite class as for rocks. Missiles will always have a zero angular velocity. They will also have a lifespan (they should disappear after a certain amount of time or you will eventually have missiles all over the place), but we will ignore that this week. Also, for now, we will only allow a single missile and it will not yet blow up rocks. We'll add more next week.\
+Your missile should be created when you press the spacebar, not on a timer like rocks. They should screen wrap just as the ship and rocks do. Otherwise, the process is very similar:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl420
+\ls4\ilvl0\cf2 {\listtext	1.	}Add a 
+\f1\fs24 \cf5 \cb6 shoot
+\f0\fs28 \cf2 \cb3  method to your ship class. This should spawn a new missile (for now just replace the old missile in 
+\f1\fs24 \cf5 \cb6 a_missile
+\f0\fs28 \cf2 \cb3 ). The missile's initial position should be the tip of your ship's "cannon". Its velocity should be the sum of the ship's velocity and a multiple of the ship's forward vector.\
+{\listtext	2.	}Modify the keydown handler to call this shoot method when the spacebar is pressed.\
+{\listtext	3.	}Make sure that the missile sound is passed to the sprite initializer so that the shooting sound is played whenever you shoot a missile.\
+\pard\pardeftab720\sl420
+
+\b \cf2 Phase four - User interface
+\b0 \
+\pard\pardeftab720\sl420\sa210
+\cf2 Our user interface for 
+\i RiceRocks
+\i0  simply shows the number of lives remaining and the score. This week neither of those elements ever change, but they will next week. Add code to the draw event handler to draw these on the canvas. Use the 
+\f1\fs24 \cf5 \cb6 lives
+\f0\fs28 \cf2 \cb3  and 
+\f1\fs24 \cf5 \cb6 score
+\f0\fs28 \cf2 \cb3  global variables as the current lives remaining and score.\
+}

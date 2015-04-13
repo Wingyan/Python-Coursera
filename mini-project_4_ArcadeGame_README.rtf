@@ -1,0 +1,79 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red11\green81\blue160;
+\red210\green0\blue53;\red245\green245\blue247;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+{\info
+{\author KJHg }}\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl840\sa210
+
+\f0\b\fs40 \cf2 \cb3 Mini-project #4 - "Pong"\
+\pard\pardeftab720\sl420
+
+\b0\fs28 \cf2 In this project, we will build a version of {\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/Pong"}}{\fldrslt \cf4 Pong}}, one of the first arcade video games (1972). While Pong is not particularly exciting compared to today's video games, Pong is relatively simple to build and provides a nice opportunity to work on the skills that you will need to build a game like 
+\i Asteroids
+\i0 . As usual, we have provided a {\field{\*\fldinst{HYPERLINK "http://www.codeskulptor.org/#examples-pong_template.py"}}{\fldrslt 
+\b \cf4 program template}} that can be used to guide your development of Pong.
+\b\fs32 \
+\pard\pardeftab720\sl840\sa210
+\cf2 Mini-project development process\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl420
+\ls1\ilvl0
+\b0\fs28 \cf2 {\listtext	1.	}Add code to the program template that draws a ball moving across the Pong table. We recommend that you add the positional update for the ball to the draw handler as shown in the second part of the "Motion" video.\
+{\listtext	2.	}Add code to the function\'a0
+\f1\fs24 \cf5 \cb6 spawn_ball
+\f0\fs28 \cf2 \cb3 \'a0that spawns a ball in the middle of the table and assigns the ball a fixed velocity (for now). Ignore the parameter 
+\f1\fs24 \cf5 \cb6 direction
+\f0\fs28 \cf2 \cb3 \'a0at this point.\
+{\listtext	3.	}Add a call to 
+\f1\fs24 \cf5 \cb6 spawn_ball
+\f0\fs28 \cf2 \cb3 \'a0in the function 
+\f1\fs24 \cf5 \cb6 new_game
+\f0\fs28 \cf2 \cb3  which starts a game of Pong. Note that the program template also includes an initial call to\'a0
+\f1\fs24 \cf5 \cb6 new_game
+\f0\fs28 \cf2 \cb3  in the main body of your program to get a game going immediately.\
+{\listtext	4.	}Modify your code such that the ball collides with and bounces off of the top and bottom walls. Experiment with different hard-coded initial velocities to test your code.\
+{\listtext	5.	}Add randomization to the velocity in 
+\f1\fs24 \cf5 \cb6 spawn_ball(direction)
+\f0\fs28 \cf2 \cb3  The velocity of the ball should be upwards and towards the right if
+\f1\fs24 \cf5 \cb6 direction == RIGHT
+\f0\fs28 \cf2 \cb3 \'a0and upwards and towards the left if 
+\f1\fs24 \cf5 \cb6 direction == LEFT
+\f0\fs28 \cf2 \cb3 . The exact values for the horizontal and vertical components of this velocity should be generated using 
+\f1\fs24 \cf5 \cb6 random.randrange()
+\f0\fs28 \cf2 \cb3 . For the horizontal velocity, we suggest a speed of around 
+\f1\fs24 \cf5 \cb6 random.randrange(120, 240)
+\f0\fs28 \cf2 \cb3  pixels per second. For the vertical velocity, we suggest a speed of around
+\f1\fs24 \cf5 \cb6 random.randrange(60, 180)
+\f0\fs28 \cf2 \cb3  pixels per second. (You will need to set the signs of velocities appropriately.)\
+{\listtext	6.	}Add code to the draw handler that tests whether the ball touches/collides with the left and right gutters. (Remember that the gutters are offset from the left and right edges of the canvas by the width of the paddle as described in the "Pong" video.) When the ball touches a gutter, use either\'a0
+\f1\fs24 \cf5 \cb6 spawn_ball(LEFT)
+\f0\fs28 \cf2 \cb3 \'a0or\'a0
+\f1\fs24 \cf5 \cb6 spawn_ball(RIGHT)
+\f0\fs28 \cf2 \cb3 \'a0to respawn the ball in the center of the table headed towards the opposite gutter.\
+{\listtext	7.	}Next, add code that draws the left and right paddles in their respective gutters. The vertical positions of these two paddles should depend on two global variables. (In the template, the variables were 
+\f1\fs24 \cf5 \cb6 paddle1_pos
+\f0\fs28 \cf2 \cb3  and 
+\f1\fs24 \cf5 \cb6 paddle2_pos
+\f0\fs28 \cf2 \cb3 .)\
+{\listtext	8.	}Add code that modifies the values of these vertical positions via an update in the draw handler. \'a0The update should reference two global variables that contain the vertical velocities of the paddles. (In the template, the variables were 
+\f1\fs24 \cf5 \cb6 paddle1_vel
+\f0\fs28 \cf2 \cb3  and
+\f1\fs24 \cf5 \cb6 paddle2_vel
+\f0\fs28 \cf2 \cb3 .)\
+{\listtext	9.	}Update the values of these two vertical velocities using key handlers. The "w" and "s" keys should control the vertical velocity of the left paddle while the "Up arrow" and "Down arrow" key should control the velocity of the right paddle. In our version of Pong, the left paddle moves up at a constant velocity if the "w" key is pressed and moves down at a constant velocity if the "s" is pressed and is motionless if neither is pressed. (The motion if both are pressed is up to you.) To achieve this effect, you will need to use both a keydown and a keyup handler to increase/decrease the vertical velocity in an appropriate manner.\
+{\listtext	10.	}Restrict your paddles to stay entirely on the canvas by adding a check before you update the paddles' vertical positions in the draw handler. In particular, test whether the current update for a paddle's position will move part of the paddle off of the screen. If it does, don't allow the update.\
+{\listtext	11.	}Modify your collision code for the left and right gutters in step 6 to check whether the ball is actually striking a paddle when it touches a gutter. If so, reflect the ball back into play. This collision model eliminates the possibility of the ball striking the edge of the paddle and greatly simplifies your collision/reflection code.\
+{\listtext	12.	}To moderately increase the difficulty of your game, increase the velocity of the ball by 10% each time it strikes a paddle.\
+{\listtext	13.	}Add scoring to the game as shown in the Pong video lecture. Each time the ball strikes the left or right gutter (but not a paddle), the opposite player receives a point and ball is respawned appropriately.\
+{\listtext	14.	}Finally, add code to 
+\f1\fs24 \cf5 \cb6 new_game
+\f0\fs28 \cf2 \cb3  which resets the score before calling 
+\f1\fs24 \cf5 \cb6 spawn_ball
+\f0\fs28 \cf2 \cb3 . Add a "Restart" button that calls 
+\f1\fs24 \cf5 \cb6 new_game
+\f0\fs28 \cf2 \cb3  to reset the score and relaunch the ball.\
+\pard\pardeftab720\sl420
+\cf2 Your final version of Pong should be remarkably similar to the original arcade Pong game. Our full implementation of Pong took a little more than 100 lines of code with comments.}
